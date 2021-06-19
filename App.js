@@ -1,21 +1,39 @@
-import { StatusBar } from 'expo-status-bar';
+  
+/**
+ * App.js
+ *
+ * Root component of the app, 
+ * responsible for setting up routes.
+ *
+*/
+
+// Libs
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+// Components
+import Home from './src/Home';
+import Budget from './src/Budget';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+/**
+ * createStackNavigator
+ *
+ * Creates a stack of our routes.
+ *
+*/
+const Navigator = createStackNavigator({
+    Home: { screen: Home },
+    Budget: { screen: Budget },
 });
+
+/**
+ * createAppContainer
+ *
+ * Responsible for managing app state and linking
+ * the top-level navigator to the app environment.
+ *
+*/
+const App = createAppContainer(Navigator);
+
+export default App;
